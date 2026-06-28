@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divyani Pandey | CSE Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0F;
+    --surface: #111118;
+    --card: #16161F;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.14);
+    --accent: #7C6EF5;
+    --accent-soft: rgba(124,110,245,0.12);
+    --accent-glow: rgba(124,110,245,0.25);
+    --teal: #2DD4BF;
+    --teal-soft: rgba(45,212,191,0.1);
+    --text-1: #F0EFF8;
+    --text-2: #9896B0;
+    --text-3: #5E5C78;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text-1);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--text-1);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-1); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 5rem;
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-inner { max-width: 720px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent-soft);
+    border: 1px solid rgba(124,110,245,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.8rem;
+    color: #A89FF8;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.05;
+    color: var(--text-1);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 1.125rem;
+    color: var(--text-2);
+    line-height: 1.75;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 0.8rem 1.75rem;
+    background: var(--accent);
+    color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    font-family: var(--sans);
+    font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-ghost {
+    padding: 0.8rem 1.75rem;
+    background: transparent;
+    color: var(--text-1);
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-sm);
+    font-family: var(--sans);
+    font-size: 0.9rem; font-weight: 400;
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-value {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--text-1);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-value span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--text-3); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--text-1);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-sub { font-size: 1.05rem; color: var(--text-2); max-width: 520px; line-height: 1.7; margin-bottom: 3.5rem; font-weight: 300; }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--text-2); line-height: 1.8; margin-bottom: 1.25rem; font-weight: 300; }
+  .about-text p strong { color: var(--text-1); font-weight: 500; }
+  .edu-cards { display: flex; flex-direction: column; gap: 1rem; }
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: var(--border-hover); }
+  .edu-tag {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--teal); background: var(--teal-soft);
+    border: 1px solid rgba(45,212,191,0.2);
+    padding: 0.25rem 0.65rem; border-radius: 100px;
+    display: inline-block; margin-bottom: 0.85rem;
+  }
+  .edu-degree { font-size: 1rem; font-weight: 500; color: var(--text-1); margin-bottom: 0.3rem; }
+  .edu-school { font-size: 0.875rem; color: var(--text-2); margin-bottom: 0.85rem; }
+  .edu-score {
+    display: flex; align-items: baseline; gap: 0.4rem;
+  }
+  .edu-score-val { font-family: var(--serif); font-size: 1.75rem; color: var(--accent); line-height: 1; }
+  .edu-score-label { font-size: 0.8rem; color: var(--text-3); }
+
+  /* ── SKILLS ── */
+  .skills-bg { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--accent-soft); border: 1px solid rgba(124,110,245,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 1rem;
+  }
+  .skill-name { font-size: 0.95rem; font-weight: 500; color: var(--text-1); margin-bottom: 0.35rem; }
+  .skill-tools { font-size: 0.82rem; color: var(--text-3); line-height: 1.5; }
+
+  /* ── PROJECTS ── */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+  .project-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .project-links { display: flex; gap: 0.5rem; }
+  .project-link {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: transparent; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-3); font-size: 0.85rem;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .project-link:hover { border-color: var(--accent); color: var(--accent); }
+  .project-name { font-size: 1.1rem; font-weight: 500; color: var(--text-1); margin-bottom: 0.6rem; }
+  .project-desc { font-size: 0.875rem; color: var(--text-2); line-height: 1.6; flex: 1; margin-bottom: 1.25rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag {
+    font-size: 0.72rem; font-weight: 500; padding: 0.25rem 0.65rem;
+    border-radius: 100px; border: 1px solid var(--border);
+    color: var(--text-3);
+  }
+
+  /* ── CONTACT ── */
+  .contact-bg { background: var(--surface); }
+  .contact-inner { max-width: 640px; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.5rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.65rem;
+    padding: 0.8rem 1.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--text-1); }
+  .contact-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-3);
+    font-size: 0.8rem;
+  }
+
+  /* ── DIVIDER LINE ── */
+  .line-accent {
+    display: inline-block;
+    width: 2.5rem; height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.25rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Divyani Pandey</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span></span>
+      Available for opportunities
+    </div>
+    <h1>
+      Building things with<br>
+      code &amp; <em>curiosity</em>
+    </h1>
+    <p class="hero-desc">
+      Final year Computer Science student at HBTU Kanpur. Passionate about software development, problem solving, and creating meaningful digital experiences.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View my work</a>
+      <a href="Divyani_Pandey_Resume.docx" class="btn-ghost" download>Download resume</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-value">9.0<span>91</span></div>
+        <div class="stat-label">CGPA — 3rd Year B.Tech</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">84<span>%</span></div>
+        <div class="stat-label">Diploma Aggregate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">3<span>+</span></div>
+        <div class="stat-label">Years of CSE</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label"><span class="line-accent"></span>About</div>
+        <h2 class="section-title">Turning ideas into<br>working software</h2>
+        <p>
+          I'm <strong>Divyani Pandey</strong>, a final year B.Tech CSE student at <strong>Harcourt Butler Technical University (HBTU), Kanpur</strong>. I've been passionate about computers since my diploma days and love writing clean, purposeful code.
+        </p>
+        <p>
+          My academic journey started with a diploma in Computer Science (2021–2024) from Govt. Girls Polytechnic Meja, Prayagraj, where I graduated with an <strong>84% aggregate</strong>. I carried that momentum into B.Tech, achieving a <strong>CGPA of 9.091</strong> in my third year.
+        </p>
+        <p>
+          I'm skilled in <strong>Java, Python, C++</strong>, and core CS concepts including OOP, DBMS, and SQL. I enjoy building desktop applications and solving real-world problems through software.
+        </p>
+      </div>
+      <div class="edu-cards">
+        <div class="edu-card">
+          <span class="edu-tag">Current</span>
+          <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
+          <div class="edu-school">Harcourt Butler Technical University, Kanpur &nbsp;&middot;&nbsp; 2024–present</div>
+          <div class="edu-score">
+            <span class="edu-score-val">9.091</span>
+            <span class="edu-score-label">CGPA (3rd Year)</span>
+          </div>
+        </div>
+        <div class="edu-card">
+          <span class="edu-tag">Completed</span>
+          <div class="edu-degree">Diploma — Computer Science &amp; Engineering</div>
+          <div class="edu-school">Govt. Girls Polytechnic Meja, Prayagraj &nbsp;&middot;&nbsp; 2021–2024</div>
+          <div class="edu-score">
+            <span class="edu-score-val">84%</span>
+            <span class="edu-score-label">Aggregate percentage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-bg">
+  <div class="container">
+    <div class="section-label"><span class="line-accent"></span>Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <p class="section-sub">A growing toolkit built through coursework, projects, and a lot of late-night debugging sessions.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-name">Programming Languages</div>
+        <div class="skill-tools">Java (Intermediate), Python (Intermediate), C++ (Intermediate)</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-name">CS Core Concepts</div>
+        <div class="skill-tools">OOP, DBMS, SQL, JDBC, Data Structures</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">Database</div>
+        <div class="skill-tools">MySQL — schema design, CRUD operations, JDBC integration</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-name">Tools &amp; Platforms</div>
+        <div class="skill-tools">Git, GitHub, VS Code, NetBeans</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label"><span class="line-accent"></span>Projects</div>
+    <h2 class="section-title">Things I've built</h2>
+    <p class="section-sub">Real projects from coursework and personal exploration — each one taught me something new.</p>
+    <div class="projects-grid" style="grid-template-columns: 1fr; max-width: 600px;">
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">✈️</div>
+          <div class="project-links">
+            <a href="https://github.com/Divyani30-27" class="project-link" title="GitHub">⇗</a>
+          </div>
+        </div>
+        <div class="project-name">Travel and Tourism Management System</div>
+        <div class="project-meta" style="font-size:0.8rem;color:var(--text-3);margin-bottom:0.85rem;">Java &middot; JDBC &middot; MySQL &middot; NetBeans &nbsp;|&nbsp; March 2026 – April 2026</div>
+        <div class="project-desc">
+          <ul style="padding-left:1.1rem;">
+            <li style="margin-bottom:0.35rem;">Developed a desktop-based application for managing travel packages and customer bookings.</li>
+            <li style="margin-bottom:0.35rem;">Implemented user registration, login, package booking, and customer management functionalities.</li>
+            <li style="margin-bottom:0.35rem;">Integrated MySQL database using JDBC for efficient data storage and retrieval.</li>
+            <li style="margin-bottom:0.35rem;">Performed CRUD operations and maintained booking records through a user-friendly interface.</li>
+            <li>Applied Object-Oriented Programming concepts and database management techniques.</li>
+          </ul>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">JDBC</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">NetBeans</span>
+          <span class="tag">Desktop Application</span>
+          <span class="tag">OOP</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-3);">
+      → Update the GitHub link above with your real repository once you push the project.
+    </p>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" style="background: var(--surface); padding: 6rem 3rem;">
+  <div class="container">
+    <div class="section-label"><span class="line-accent"></span>Achievements</div>
+    <h2 class="section-title">Highlights &amp; recognition</h2>
+    <p class="section-sub">Certifications, leadership roles, and competitive milestones.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.14)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+        <div style="font-size:1.4rem;flex-shrink:0;margin-top:2px;">☕</div>
+        <div>
+          <div style="font-size:0.95rem;font-weight:500;color:var(--text-1);margin-bottom:0.3rem;">Java Summer Training — Softpro India</div>
+          <div style="font-size:0.82rem;color:var(--text-3);line-height:1.5;">Completed summer training in Java from Softpro India Computer Technologies, Lucknow. Covered Core Java concepts and application development.</div>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.14)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+        <div style="font-size:1.4rem;flex-shrink:0;margin-top:2px;">🏛️</div>
+        <div>
+          <div style="font-size:0.95rem;font-weight:500;color:var(--text-1);margin-bottom:0.3rem;">Student Leader — Bureau of Indian Standards</div>
+          <div style="font-size:0.82rem;color:var(--text-3);line-height:1.5;">Represented HBTU Kanpur as a student leader at the college level for BIS initiatives.</div>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.14)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+        <div style="font-size:1.4rem;flex-shrink:0;margin-top:2px;">🎯</div>
+        <div>
+          <div style="font-size:0.95rem;font-weight:500;color:var(--text-1);margin-bottom:0.3rem;">DRDO CEPTAM-11 Qualifier</div>
+          <div style="font-size:0.82rem;color:var(--text-3);line-height:1.5;">Qualified Tier-1 and shortlisted for Tier-2 of the prestigious DRDO CEPTAM-11 exam.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-bg">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-label"><span class="line-accent"></span>Contact</div>
+      <h2 class="section-title">Let's connect</h2>
+      <p class="section-sub">Whether it's a project, internship, or just a chat about tech — I'm always open to new conversations.</p>
+      <div class="contact-links">
+        <a href="https://github.com/Divyani30-27" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/divyani-pandey-688515290/?skipRedirect=true" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:pandeydivyani3021@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          pandeydivyani3021@gmail.com
+        </a>
+        <a href="tel:+916387600603" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          +91-6387600603
+        </a>
+        <a href="Divyani_Pandey_Resume.docx" class="contact-link" style="background:var(--accent);color:#fff;border-color:var(--accent);" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          Download resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by Divyani Pandey · HBTU Kanpur · 2024</p>
+</footer>
+
+</body>
+</html>
